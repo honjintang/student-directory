@@ -32,7 +32,20 @@ def print_footer(students)
   puts "Overall, we have #{students.count} great students"
 end
 
+def print_names_beginning_with_specific_letter(students, specific_letter)
+
+    selected_students = students.select{|student| student[:name][0].downcase == specific_letter.downcase}
+    puts
+    puts "There are #{selected_students.count} students with names beginning with #{specific_letter}:"
+
+    selected_students.each_with_index do |student, index|
+    puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
+  end
+
+end
+
 students = input_students
 print_header
 print(students)
 print_footer(students)
+print_names_beginning_with_specific_letter(students, "s")
