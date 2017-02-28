@@ -50,9 +50,20 @@ def print_names_shorter_than_12_characters (students)
   end
 end
 
+def print_students_using_while_loop(students)
+  puts
+  puts "Here are the student names again, using a while loop:"
+  idx = 0
+  while idx < students.length
+    puts "#{idx + 1}. #{students[idx][:name]} (#{students[idx][:cohort]} cohort)"
+    idx += 1
+  end
+end
+
 students = input_students
 print_header
 print(students)
 print_footer(students)
 print_names_beginning_with_specific_letter(students, "s")
 print_names_shorter_than_12_characters(students)
+print_students_using_while_loop(students)
