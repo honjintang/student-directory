@@ -53,7 +53,7 @@ def input_students
       students << {name: name, cohort: cohort}
       puts "Now we have #{students.count} students"
 
-      puts "Please enter another student name or press enter twice to finish:"
+      puts "Please enter another student name or press enter again to finish:"
       name = gets.chomp
       unless name.empty?
         cohort = get_cohort

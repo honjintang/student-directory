@@ -15,7 +15,7 @@ def print(students)
     student[:cohort]
   }
 
-  existing_cohorts.uniq!.map {|cohort|
+  existing_cohorts.uniq.map {|cohort|
     puts "Students in the #{cohort} cohort are:"
     sorted_by_cohort.each {|student|
       if student[:cohort] == cohort.to_sym
@@ -33,7 +33,7 @@ def print_header
 end
 
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students"
+  puts "Overall, we have #{students.count} great student#{students.count == 1 ? '' : 's'}"
 end
 
 def get_cohort
@@ -67,9 +67,9 @@ def input_students
           check = gets.chomp
         end
       students << {name: name, cohort: cohort}
-      puts "Now we have #{students.count} students"
+      puts "Now we have #{students.count} student#{students.count == 1 ? '' : 's'}"
 
-      puts "Please enter another student name or press enter twice to finish:"
+      puts "Please enter another student name or press enter again to finish:"
       name = gets.chomp
       unless name.empty?
         cohort = get_cohort
