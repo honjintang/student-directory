@@ -10,11 +10,6 @@ def interactive_menu
   end
 end
 
-def choose_file #added method for user to input filename
-  puts "Please enter file name:"
-  filename = STDIN.gets.chomp
-end
-
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
@@ -64,9 +59,9 @@ def process(selection)
   when "1"; input_students #using semicolons instead of 'then'
   when "2"; show_students
   when "3"; save_students
-    puts "students were saved from #{filename}"
+    puts "#{@students.count} students were saved"
   when "4"; load_students
-    puts "loaded students from #{filename}"
+    puts "Loaded #{@students.count} students"
   when "5"; exit
     else
       puts "I don't know what you meant. Please try again."
@@ -74,8 +69,9 @@ def process(selection)
 end
 
 def save_students
-  #open the file for writing
-  file = File.open("students.csv", "w")
+  puts "Save to which file?"
+  filename = STDIN.gets.chomp
+  file = File.open(filename, "w")
   #iterate over the array of students
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
@@ -85,7 +81,9 @@ def save_students
   file.close
 end
 
-def load_students(filename = choose_file)
+def load_students(filename = "students.csv")
+  puts "Load from which file?"
+  filename = STDIN.gets.chomp
   file = File.open(filename, "r")
   file.readlines.each do |line|
   name, cohort = line.chomp.split(',')
@@ -101,7 +99,7 @@ def try_load_students
     load_students(filename)
     puts "Loaded #{@students.count} from #{filename}"
   else
-    puts "Sorry, #{filname} doesn't exist."
+    puts "Sorry, #{filename} doesn't exist."
     exit
   end
 end
